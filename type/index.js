@@ -24,3 +24,25 @@ export const KnowledgeUnit = {
   POINT_ESTIMATION: 'POINT_ESTIMATION',
   HYPOTHESIS_TEST: 'HYPOTHESIS_TEST',
 }
+
+// 提取公共的 include 配置，减少冗余(主要用于获取题目列表时)
+export const QUESTION_INCLUDE = {
+  options: true,
+  singleChoice: true,
+  multipleChoice: true,
+  judgment: true,
+  fillBlank: true,
+  calculation: true,
+  shortAnswer: true,
+}
+
+// 辅助函数：统一成功响应格式
+export const sendSuccess = (ctx, data, extra = {}) => {
+  ctx.body = { success: true, data, ...extra };
+};
+
+// 辅助函数：统一错误响应格式
+export const sendError = (ctx, message, status = 400) => {
+  ctx.status = status;
+  ctx.body = { success: false, message };
+};
