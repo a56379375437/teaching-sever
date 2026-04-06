@@ -9,7 +9,35 @@
 * 🟢 You can import this file directly.
 */
 
+export const QuestionType = {
+  SINGLE_CHOICE: 'SINGLE_CHOICE',
+  MULTIPLE_CHOICE: 'MULTIPLE_CHOICE',
+  JUDGMENT: 'JUDGMENT',
+  FILL_BLANK: 'FILL_BLANK',
+  CALCULATION: 'CALCULATION',
+  SHORT_ANSWER: 'SHORT_ANSWER'
+} as const
+
+export type QuestionType = (typeof QuestionType)[keyof typeof QuestionType]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const QuestionLevel = {
+  EASY: 'EASY',
+  MEDIUM: 'MEDIUM',
+  HARD: 'HARD'
+} as const
+
+export type QuestionLevel = (typeof QuestionLevel)[keyof typeof QuestionLevel]
+
+
+export const KnowledgeUnit = {
+  PROBABILITY_BASE: 'PROBABILITY_BASE',
+  RANDOM_VARIABLE: 'RANDOM_VARIABLE',
+  DIGITAL_CHARACTER: 'DIGITAL_CHARACTER',
+  LARGE_NUMBER_LAW: 'LARGE_NUMBER_LAW',
+  MATHEMATICAL_STAT: 'MATHEMATICAL_STAT',
+  POINT_ESTIMATION: 'POINT_ESTIMATION',
+  HYPOTHESIS_TEST: 'HYPOTHESIS_TEST'
+} as const
+
+export type KnowledgeUnit = (typeof KnowledgeUnit)[keyof typeof KnowledgeUnit]

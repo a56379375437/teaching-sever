@@ -51,7 +51,14 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-
+  Question: 'Question',
+  QuestionOption: 'QuestionOption',
+  SingleChoice: 'SingleChoice',
+  MultipleChoice: 'MultipleChoice',
+  Judgment: 'Judgment',
+  FillBlank: 'FillBlank',
+  Calculation: 'Calculation',
+  ShortAnswer: 'ShortAnswer'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -65,4 +72,99 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 } as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const QuestionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  type: 'type',
+  level: 'level',
+  knowledgeUnit: 'knowledgeUnit',
+  score: 'score',
+  creator: 'creator',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuestionScalarFieldEnum = (typeof QuestionScalarFieldEnum)[keyof typeof QuestionScalarFieldEnum]
+
+
+export const QuestionOptionScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  isCorrect: 'isCorrect',
+  order: 'order',
+  questionId: 'questionId'
+} as const
+
+export type QuestionOptionScalarFieldEnum = (typeof QuestionOptionScalarFieldEnum)[keyof typeof QuestionOptionScalarFieldEnum]
+
+
+export const SingleChoiceScalarFieldEnum = {
+  id: 'id',
+  questionId: 'questionId'
+} as const
+
+export type SingleChoiceScalarFieldEnum = (typeof SingleChoiceScalarFieldEnum)[keyof typeof SingleChoiceScalarFieldEnum]
+
+
+export const MultipleChoiceScalarFieldEnum = {
+  id: 'id',
+  questionId: 'questionId'
+} as const
+
+export type MultipleChoiceScalarFieldEnum = (typeof MultipleChoiceScalarFieldEnum)[keyof typeof MultipleChoiceScalarFieldEnum]
+
+
+export const JudgmentScalarFieldEnum = {
+  id: 'id',
+  answer: 'answer',
+  questionId: 'questionId'
+} as const
+
+export type JudgmentScalarFieldEnum = (typeof JudgmentScalarFieldEnum)[keyof typeof JudgmentScalarFieldEnum]
+
+
+export const FillBlankScalarFieldEnum = {
+  id: 'id',
+  standardAnswer: 'standardAnswer',
+  questionId: 'questionId'
+} as const
+
+export type FillBlankScalarFieldEnum = (typeof FillBlankScalarFieldEnum)[keyof typeof FillBlankScalarFieldEnum]
+
+
+export const CalculationScalarFieldEnum = {
+  id: 'id',
+  standardProcess: 'standardProcess',
+  standardAnswer: 'standardAnswer',
+  questionId: 'questionId'
+} as const
+
+export type CalculationScalarFieldEnum = (typeof CalculationScalarFieldEnum)[keyof typeof CalculationScalarFieldEnum]
+
+
+export const ShortAnswerScalarFieldEnum = {
+  id: 'id',
+  standardAnswer: 'standardAnswer',
+  questionId: 'questionId'
+} as const
+
+export type ShortAnswerScalarFieldEnum = (typeof ShortAnswerScalarFieldEnum)[keyof typeof ShortAnswerScalarFieldEnum]
+
+
+export const SortOrder = {
+  asc: 'asc',
+  desc: 'desc'
+} as const
+
+export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

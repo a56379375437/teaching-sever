@@ -17,4 +17,43 @@ import * as Prisma from './internal/prismaNamespaceBrowser.ts'
 export { Prisma }
 export * as $Enums from './enums.ts'
 export * from './enums.ts';
-
+/**
+ * Model Question
+ * 
+ */
+export type Question = Prisma.QuestionModel
+/**
+ * Model QuestionOption
+ * 
+ */
+export type QuestionOption = Prisma.QuestionOptionModel
+/**
+ * Model SingleChoice
+ * 
+ */
+export type SingleChoice = Prisma.SingleChoiceModel
+/**
+ * Model MultipleChoice
+ * 
+ */
+export type MultipleChoice = Prisma.MultipleChoiceModel
+/**
+ * Model Judgment
+ * 
+ */
+export type Judgment = Prisma.JudgmentModel
+/**
+ * Model FillBlank
+ * 
+ */
+export type FillBlank = Prisma.FillBlankModel
+/**
+ * Model Calculation
+ * 
+ */
+export type Calculation = Prisma.CalculationModel
+/**
+ * Model ShortAnswer
+ * 
+ */
+export type ShortAnswer = Prisma.ShortAnswerModel

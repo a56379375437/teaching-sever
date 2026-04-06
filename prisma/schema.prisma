@@ -7,3 +7,111 @@ datasource db {
   provider = "sqlite"
 }
 
+// 题目类型
+enum QuestionType {
+  SINGLE_CHOICE    // 单选题
+  MULTIPLE_CHOICE  // 多选题
+  JUDGMENT         // 判断题
+  FILL_BLANK       // 填空题
+  CALCULATION      // 计算题
+  SHORT_ANSWER     // 简答题
+}
+
+// 难度等级
+enum QuestionLevel {
+  EASY      // 容易
+  MEDIUM    // 中等
+  HARD      // 困难
+}
+
+// 知识点分类
+enum KnowledgeUnit {
+  PROBABILITY_BASE      // 概率论基础
+  RANDOM_VARIABLE       // 随机变量
+  DIGITAL_CHARACTER     // 数字特征
+  LARGE_NUMBER_LAW      // 大数定律
+  MATHEMATICAL_STAT     // 数理统计
+  POINT_ESTIMATION      // 点估计
+  HYPOTHESIS_TEST       // 假设检验
+}
+
+// 主题目表（核心）
+model Question {
+  id             Int            @id @default(autoincrement())
+  title          String         // 题干
+  type           QuestionType   // 题目类型
+  level          QuestionLevel  // 难度
+  knowledgeUnit  KnowledgeUnit  // 所属知识点
+  score          Int            @default(5) // 分值
+  creator        String?        // 创建者
+  createdAt      DateTime       @default(now())//创建时间
+  updatedAt      DateTime       @updatedAt // 更新时间
+
+  // 各题型关联
+  options        QuestionOption[]
+  singleChoice   SingleChoice?
+  multipleChoice MultipleChoice?
+  judgment       Judgment?
+  fillBlank      FillBlank?
+  calculation    Calculation?
+  shortAnswer    ShortAnswer?
+}
+
+// 题目选项（通用，单选/多选/判断共用）
+model QuestionOption {
+  id          Int      @id @default(autoincrement())
+  content     String   // 选项内容
+  isCorrect   Boolean  // 是否正确
+  order       Int      // 排序
+
+  // 关联
+  questionId  Int
+  question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+// 单选题
+model SingleChoice {
+  id          Int      @id @default(autoincrement())
+  questionId  Int      @unique
+  question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+// 多选题
+model MultipleChoice {
+  id          Int      @id @default(autoincrement())
+  questionId  Int      @unique
+  question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+// 判断题
+model Judgment {
+  id          Int      @id @default(autoincrement())
+  answer      Boolean  // 正确答案：true / false
+  questionId  Int      @unique
+  question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+// 填空题
+model FillBlank {
+  id            Int      @id @default(autoincrement())
+  standardAnswer String  // 标准答案
+  questionId    Int      @unique
+  question      Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+// 计算题
+model Calculation {
+  id              Int      @id @default(autoincrement())
+  standardProcess String? // 标准解题步骤
+  standardAnswer  String  // 标准答案
+  questionId      Int      @unique
+  question        Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+// 简答题
+model ShortAnswer {
+  id              Int      @id @default(autoincrement())
+  standardAnswer  String   // 参考答案要点
+  questionId      Int      @unique
+  question        Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}

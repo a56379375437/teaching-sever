@@ -31,8 +31,8 @@ export * from "./enums.ts"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Questions
+ * const questions = await prisma.question.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -41,4 +41,43 @@ export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
 export { Prisma }
 
-
+/**
+ * Model Question
+ * 
+ */
+export type Question = Prisma.QuestionModel
+/**
+ * Model QuestionOption
+ * 
+ */
+export type QuestionOption = Prisma.QuestionOptionModel
+/**
+ * Model SingleChoice
+ * 
+ */
+export type SingleChoice = Prisma.SingleChoiceModel
+/**
+ * Model MultipleChoice
+ * 
+ */
+export type MultipleChoice = Prisma.MultipleChoiceModel
+/**
+ * Model Judgment
+ * 
+ */
+export type Judgment = Prisma.JudgmentModel
+/**
+ * Model FillBlank
+ * 
+ */
+export type FillBlank = Prisma.FillBlankModel
+/**
+ * Model Calculation
+ * 
+ */
+export type Calculation = Prisma.CalculationModel
+/**
+ * Model ShortAnswer
+ * 
+ */
+export type ShortAnswer = Prisma.ShortAnswerModel

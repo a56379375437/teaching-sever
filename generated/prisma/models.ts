@@ -8,4 +8,12 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/Question.ts'
+export type * from './models/QuestionOption.ts'
+export type * from './models/SingleChoice.ts'
+export type * from './models/MultipleChoice.ts'
+export type * from './models/Judgment.ts'
+export type * from './models/FillBlank.ts'
+export type * from './models/Calculation.ts'
+export type * from './models/ShortAnswer.ts'
 export type * from './commonInputTypes.ts'
