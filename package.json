@@ -21,7 +21,7 @@
     "koa": "^3.0.0",
     "koa-bodyparser": "^4.4.1",
     "koa-static": "^5.0.0",
-    "openai": "^4.98.0"
+    "openai": "^4.104.0"
   },
   "devDependencies": {
     "cz-conventional-changelog": "^3.3.0",

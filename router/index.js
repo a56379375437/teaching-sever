@@ -1,5 +1,5 @@
 import Router from "@koa/router";
-import { READMERouter, questionRouter } from '../controller/index.js'
+import { READMERouter, questionRouter, aiQuestionRouter } from '../controller/index.js'
 
 const router = new Router({
   prefix: "/api",
@@ -10,5 +10,7 @@ const router = new Router({
 router.use(questionRouter.routes(), questionRouter.allowedMethods())
 // 挂载README路由
 router.use(READMERouter.routes(), READMERouter.allowedMethods())
+// 挂载ai相关路由
+router.use(aiQuestionRouter.routes(), aiQuestionRouter.allowedMethods())
 
 export default router;

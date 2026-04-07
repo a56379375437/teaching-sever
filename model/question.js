@@ -51,6 +51,7 @@ export const QuestionService = {
           create: (options || []).map(opt => ({
             content: opt.content,
             isCorrect: !!opt.isCorrect,
+            order: parseInt(opt.order),
           })),
         },
         // 处理不同题型的关联表数据
