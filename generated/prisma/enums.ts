@@ -41,3 +41,12 @@ export const KnowledgeUnit = {
 } as const
 
 export type KnowledgeUnit = (typeof KnowledgeUnit)[keyof typeof KnowledgeUnit]
+
+
+export const Role = {
+  STUDENT: 'STUDENT',
+  TEACHER: 'TEACHER',
+  ADMIN: 'ADMIN'
+} as const
+
+export type Role = (typeof Role)[keyof typeof Role]

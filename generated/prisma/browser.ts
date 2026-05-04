@@ -57,3 +57,13 @@ export type Calculation = Prisma.CalculationModel
  * 
  */
 export type ShortAnswer = Prisma.ShortAnswerModel
+/**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel
+/**
+ * Model QuizRecord
+ * 
+ */
+export type QuizRecord = Prisma.QuizRecordModel

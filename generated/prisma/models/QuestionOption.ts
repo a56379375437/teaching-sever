@@ -275,7 +275,7 @@ export type QuestionOptionScalarWhereWithAggregatesInput = {
 export type QuestionOptionCreateInput = {
   content: string
   isCorrect: boolean
-  order: number
+  order?: number
   question: Prisma.QuestionCreateNestedOneWithoutOptionsInput
 }
 
@@ -283,7 +283,7 @@ export type QuestionOptionUncheckedCreateInput = {
   id?: number
   content: string
   isCorrect: boolean
-  order: number
+  order?: number
   questionId: number
 }
 
@@ -306,7 +306,7 @@ export type QuestionOptionCreateManyInput = {
   id?: number
   content: string
   isCorrect: boolean
-  order: number
+  order?: number
   questionId: number
 }
 
@@ -419,14 +419,14 @@ export type BoolFieldUpdateOperationsInput = {
 export type QuestionOptionCreateWithoutQuestionInput = {
   content: string
   isCorrect: boolean
-  order: number
+  order?: number
 }
 
 export type QuestionOptionUncheckedCreateWithoutQuestionInput = {
   id?: number
   content: string
   isCorrect: boolean
-  order: number
+  order?: number
 }
 
 export type QuestionOptionCreateOrConnectWithoutQuestionInput = {
@@ -469,7 +469,7 @@ export type QuestionOptionCreateManyQuestionInput = {
   id?: number
   content: string
   isCorrect: boolean
-  order: number
+  order?: number
 }
 
 export type QuestionOptionUpdateWithoutQuestionInput = {

@@ -33,7 +33,7 @@ export const QuestionService = {
       level,
       knowledgeUnit,
       score,
-      creator,
+      creatorId,
       options,
       answer,
     } = data
@@ -45,7 +45,10 @@ export const QuestionService = {
         level,
         knowledgeUnit,
         score: score ? Number(score) : 5,
-        creator,
+        ...(creatorId && {
+          creator: { connect: { id: Number(creatorId) }
+          }
+        }),
         // 映射选项
         options: {
           create: (options || []).map(opt => ({
@@ -74,7 +77,7 @@ export const QuestionService = {
 
   // 更新问题
   async updateQuestion(id, data) {
-    const { title, type, level, knowledgeUnit, score, options, answer } = data
+    const { title, type, level, knowledgeUnit, score, options, answer,creatorId } = data
 
     const questionId = Number(id)
 
@@ -86,6 +89,10 @@ export const QuestionService = {
         level,
         knowledgeUnit,
         score: score ? Number(score) : undefined,
+        ...(creatorId && {
+          creator: { connect: { id: Number(creatorId) }
+          }
+        }),
         // 选项更新：先删除后重新创建（覆盖式更新）
         options: options
           ? {

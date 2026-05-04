@@ -43,7 +43,8 @@ model Question {
   level          QuestionLevel  // 难度
   knowledgeUnit  KnowledgeUnit  // 所属知识点
   score          Int            @default(5) // 分值
-  creator        String?        // 创建者
+  creator        User?          @relation("QuestionCreator",fields: [creatorId], references: [id]) // 创建者
+  creatorId     Int?           // 创建者ID
   createdAt      DateTime       @default(now())//创建时间
   updatedAt      DateTime       @updatedAt // 更新时间
 
@@ -60,6 +61,7 @@ model Question {
   @@index([title])
   @@index([type])
   @@index([knowledgeUnit])
+  @@index([creatorId])
 }
 
 // 题目选项（通用，单选/多选/判断共用）
@@ -121,4 +123,48 @@ model ShortAnswer {
   standardAnswer  String   // 参考答案要点
   questionId      Int      @unique
   question        Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+// 用户管理：
+
+// 角色枚举
+enum Role {
+  STUDENT    // 学生
+  TEACHER    // 教师
+  ADMIN      // 管理员
+}
+
+// 用户模型
+model User {
+  id            Int            @id @default(autoincrement())
+  username      String         @unique                  // 登录账号
+  password      String                                  // 加密后的密码
+  name          String?                                 // 真实姓名
+  role          Role           @default(STUDENT)        // 用户角色
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  // 关联：作为教师创建的题目
+  createdQuestions Question[]  @relation("QuestionCreator")
+
+  // 关联：作为学生进行的测评记录
+  quizRecords     QuizRecord[]
+
+  @@index([role])
+}
+
+// 测评记录 (用于查看学生各知识单元测评情况)
+model QuizRecord {
+  id            Int           @id @default(autoincrement())
+  score         Int           // 此次测评得分
+  totalScore    Int           // 总分
+  knowledgeUnit KnowledgeUnit // 所属知识单元
+  completedAt   DateTime      @default(now())
+
+  // 关联学生
+  studentId     Int
+  student       User          @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@index([studentId])
+  @@index([knowledgeUnit])
 }

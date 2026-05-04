@@ -29,11 +29,13 @@ export type AggregateQuestion = {
 export type QuestionAvgAggregateOutputType = {
   id: number | null
   score: number | null
+  creatorId: number | null
 }
 
 export type QuestionSumAggregateOutputType = {
   id: number | null
   score: number | null
+  creatorId: number | null
 }
 
 export type QuestionMinAggregateOutputType = {
@@ -43,7 +45,7 @@ export type QuestionMinAggregateOutputType = {
   level: $Enums.QuestionLevel | null
   knowledgeUnit: $Enums.KnowledgeUnit | null
   score: number | null
-  creator: string | null
+  creatorId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -55,7 +57,7 @@ export type QuestionMaxAggregateOutputType = {
   level: $Enums.QuestionLevel | null
   knowledgeUnit: $Enums.KnowledgeUnit | null
   score: number | null
-  creator: string | null
+  creatorId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -67,7 +69,7 @@ export type QuestionCountAggregateOutputType = {
   level: number
   knowledgeUnit: number
   score: number
-  creator: number
+  creatorId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -77,11 +79,13 @@ export type QuestionCountAggregateOutputType = {
 export type QuestionAvgAggregateInputType = {
   id?: true
   score?: true
+  creatorId?: true
 }
 
 export type QuestionSumAggregateInputType = {
   id?: true
   score?: true
+  creatorId?: true
 }
 
 export type QuestionMinAggregateInputType = {
@@ -91,7 +95,7 @@ export type QuestionMinAggregateInputType = {
   level?: true
   knowledgeUnit?: true
   score?: true
-  creator?: true
+  creatorId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -103,7 +107,7 @@ export type QuestionMaxAggregateInputType = {
   level?: true
   knowledgeUnit?: true
   score?: true
-  creator?: true
+  creatorId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -115,7 +119,7 @@ export type QuestionCountAggregateInputType = {
   level?: true
   knowledgeUnit?: true
   score?: true
-  creator?: true
+  creatorId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -214,7 +218,7 @@ export type QuestionGroupByOutputType = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score: number
-  creator: string | null
+  creatorId: number | null
   createdAt: Date
   updatedAt: Date
   _count: QuestionCountAggregateOutputType | null
@@ -249,9 +253,10 @@ export type QuestionWhereInput = {
   level?: Prisma.EnumQuestionLevelFilter<"Question"> | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFilter<"Question"> | $Enums.KnowledgeUnit
   score?: Prisma.IntFilter<"Question"> | number
-  creator?: Prisma.StringNullableFilter<"Question"> | string | null
+  creatorId?: Prisma.IntNullableFilter<"Question"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Question"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Question"> | Date | string
+  creator?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   options?: Prisma.QuestionOptionListRelationFilter
   singleChoice?: Prisma.XOR<Prisma.SingleChoiceNullableScalarRelationFilter, Prisma.SingleChoiceWhereInput> | null
   multipleChoice?: Prisma.XOR<Prisma.MultipleChoiceNullableScalarRelationFilter, Prisma.MultipleChoiceWhereInput> | null
@@ -268,9 +273,10 @@ export type QuestionOrderByWithRelationInput = {
   level?: Prisma.SortOrder
   knowledgeUnit?: Prisma.SortOrder
   score?: Prisma.SortOrder
-  creator?: Prisma.SortOrderInput | Prisma.SortOrder
+  creatorId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  creator?: Prisma.UserOrderByWithRelationInput
   options?: Prisma.QuestionOptionOrderByRelationAggregateInput
   singleChoice?: Prisma.SingleChoiceOrderByWithRelationInput
   multipleChoice?: Prisma.MultipleChoiceOrderByWithRelationInput
@@ -290,9 +296,10 @@ export type QuestionWhereUniqueInput = Prisma.AtLeast<{
   level?: Prisma.EnumQuestionLevelFilter<"Question"> | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFilter<"Question"> | $Enums.KnowledgeUnit
   score?: Prisma.IntFilter<"Question"> | number
-  creator?: Prisma.StringNullableFilter<"Question"> | string | null
+  creatorId?: Prisma.IntNullableFilter<"Question"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Question"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Question"> | Date | string
+  creator?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   options?: Prisma.QuestionOptionListRelationFilter
   singleChoice?: Prisma.XOR<Prisma.SingleChoiceNullableScalarRelationFilter, Prisma.SingleChoiceWhereInput> | null
   multipleChoice?: Prisma.XOR<Prisma.MultipleChoiceNullableScalarRelationFilter, Prisma.MultipleChoiceWhereInput> | null
@@ -309,7 +316,7 @@ export type QuestionOrderByWithAggregationInput = {
   level?: Prisma.SortOrder
   knowledgeUnit?: Prisma.SortOrder
   score?: Prisma.SortOrder
-  creator?: Prisma.SortOrderInput | Prisma.SortOrder
+  creatorId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.QuestionCountOrderByAggregateInput
@@ -329,7 +336,7 @@ export type QuestionScalarWhereWithAggregatesInput = {
   level?: Prisma.EnumQuestionLevelWithAggregatesFilter<"Question"> | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitWithAggregatesFilter<"Question"> | $Enums.KnowledgeUnit
   score?: Prisma.IntWithAggregatesFilter<"Question"> | number
-  creator?: Prisma.StringNullableWithAggregatesFilter<"Question"> | string | null
+  creatorId?: Prisma.IntNullableWithAggregatesFilter<"Question"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Question"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Question"> | Date | string
 }
@@ -340,9 +347,9 @@ export type QuestionCreateInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedQuestionsInput
   options?: Prisma.QuestionOptionCreateNestedManyWithoutQuestionInput
   singleChoice?: Prisma.SingleChoiceCreateNestedOneWithoutQuestionInput
   multipleChoice?: Prisma.MultipleChoiceCreateNestedOneWithoutQuestionInput
@@ -359,7 +366,7 @@ export type QuestionUncheckedCreateInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
+  creatorId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   options?: Prisma.QuestionOptionUncheckedCreateNestedManyWithoutQuestionInput
@@ -377,9 +384,9 @@ export type QuestionUpdateInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  creator?: Prisma.UserUpdateOneWithoutCreatedQuestionsNestedInput
   options?: Prisma.QuestionOptionUpdateManyWithoutQuestionNestedInput
   singleChoice?: Prisma.SingleChoiceUpdateOneWithoutQuestionNestedInput
   multipleChoice?: Prisma.MultipleChoiceUpdateOneWithoutQuestionNestedInput
@@ -396,7 +403,7 @@ export type QuestionUncheckedUpdateInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creatorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   options?: Prisma.QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput
@@ -415,7 +422,7 @@ export type QuestionCreateManyInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
+  creatorId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -426,7 +433,6 @@ export type QuestionUpdateManyMutationInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -438,7 +444,7 @@ export type QuestionUncheckedUpdateManyInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creatorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -450,7 +456,7 @@ export type QuestionCountOrderByAggregateInput = {
   level?: Prisma.SortOrder
   knowledgeUnit?: Prisma.SortOrder
   score?: Prisma.SortOrder
-  creator?: Prisma.SortOrder
+  creatorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -458,6 +464,7 @@ export type QuestionCountOrderByAggregateInput = {
 export type QuestionAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   score?: Prisma.SortOrder
+  creatorId?: Prisma.SortOrder
 }
 
 export type QuestionMaxOrderByAggregateInput = {
@@ -467,7 +474,7 @@ export type QuestionMaxOrderByAggregateInput = {
   level?: Prisma.SortOrder
   knowledgeUnit?: Prisma.SortOrder
   score?: Prisma.SortOrder
-  creator?: Prisma.SortOrder
+  creatorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -479,7 +486,7 @@ export type QuestionMinOrderByAggregateInput = {
   level?: Prisma.SortOrder
   knowledgeUnit?: Prisma.SortOrder
   score?: Prisma.SortOrder
-  creator?: Prisma.SortOrder
+  creatorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -487,11 +494,22 @@ export type QuestionMinOrderByAggregateInput = {
 export type QuestionSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   score?: Prisma.SortOrder
+  creatorId?: Prisma.SortOrder
 }
 
 export type QuestionScalarRelationFilter = {
   is?: Prisma.QuestionWhereInput
   isNot?: Prisma.QuestionWhereInput
+}
+
+export type QuestionListRelationFilter = {
+  every?: Prisma.QuestionWhereInput
+  some?: Prisma.QuestionWhereInput
+  none?: Prisma.QuestionWhereInput
+}
+
+export type QuestionOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -518,12 +536,16 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type QuestionCreateNestedOneWithoutOptionsInput = {
@@ -624,15 +646,57 @@ export type QuestionUpdateOneRequiredWithoutShortAnswerNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.QuestionUpdateToOneWithWhereWithoutShortAnswerInput, Prisma.QuestionUpdateWithoutShortAnswerInput>, Prisma.QuestionUncheckedUpdateWithoutShortAnswerInput>
 }
 
+export type QuestionCreateNestedManyWithoutCreatorInput = {
+  create?: Prisma.XOR<Prisma.QuestionCreateWithoutCreatorInput, Prisma.QuestionUncheckedCreateWithoutCreatorInput> | Prisma.QuestionCreateWithoutCreatorInput[] | Prisma.QuestionUncheckedCreateWithoutCreatorInput[]
+  connectOrCreate?: Prisma.QuestionCreateOrConnectWithoutCreatorInput | Prisma.QuestionCreateOrConnectWithoutCreatorInput[]
+  createMany?: Prisma.QuestionCreateManyCreatorInputEnvelope
+  connect?: Prisma.QuestionWhereUniqueInput | Prisma.QuestionWhereUniqueInput[]
+}
+
+export type QuestionUncheckedCreateNestedManyWithoutCreatorInput = {
+  create?: Prisma.XOR<Prisma.QuestionCreateWithoutCreatorInput, Prisma.QuestionUncheckedCreateWithoutCreatorInput> | Prisma.QuestionCreateWithoutCreatorInput[] | Prisma.QuestionUncheckedCreateWithoutCreatorInput[]
+  connectOrCreate?: Prisma.QuestionCreateOrConnectWithoutCreatorInput | Prisma.QuestionCreateOrConnectWithoutCreatorInput[]
+  createMany?: Prisma.QuestionCreateManyCreatorInputEnvelope
+  connect?: Prisma.QuestionWhereUniqueInput | Prisma.QuestionWhereUniqueInput[]
+}
+
+export type QuestionUpdateManyWithoutCreatorNestedInput = {
+  create?: Prisma.XOR<Prisma.QuestionCreateWithoutCreatorInput, Prisma.QuestionUncheckedCreateWithoutCreatorInput> | Prisma.QuestionCreateWithoutCreatorInput[] | Prisma.QuestionUncheckedCreateWithoutCreatorInput[]
+  connectOrCreate?: Prisma.QuestionCreateOrConnectWithoutCreatorInput | Prisma.QuestionCreateOrConnectWithoutCreatorInput[]
+  upsert?: Prisma.QuestionUpsertWithWhereUniqueWithoutCreatorInput | Prisma.QuestionUpsertWithWhereUniqueWithoutCreatorInput[]
+  createMany?: Prisma.QuestionCreateManyCreatorInputEnvelope
+  set?: Prisma.QuestionWhereUniqueInput | Prisma.QuestionWhereUniqueInput[]
+  disconnect?: Prisma.QuestionWhereUniqueInput | Prisma.QuestionWhereUniqueInput[]
+  delete?: Prisma.QuestionWhereUniqueInput | Prisma.QuestionWhereUniqueInput[]
+  connect?: Prisma.QuestionWhereUniqueInput | Prisma.QuestionWhereUniqueInput[]
+  update?: Prisma.QuestionUpdateWithWhereUniqueWithoutCreatorInput | Prisma.QuestionUpdateWithWhereUniqueWithoutCreatorInput[]
+  updateMany?: Prisma.QuestionUpdateManyWithWhereWithoutCreatorInput | Prisma.QuestionUpdateManyWithWhereWithoutCreatorInput[]
+  deleteMany?: Prisma.QuestionScalarWhereInput | Prisma.QuestionScalarWhereInput[]
+}
+
+export type QuestionUncheckedUpdateManyWithoutCreatorNestedInput = {
+  create?: Prisma.XOR<Prisma.QuestionCreateWithoutCreatorInput, Prisma.QuestionUncheckedCreateWithoutCreatorInput> | Prisma.QuestionCreateWithoutCreatorInput[] | Prisma.QuestionUncheckedCreateWithoutCreatorInput[]
+  connectOrCreate?: Prisma.QuestionCreateOrConnectWithoutCreatorInput | Prisma.QuestionCreateOrConnectWithoutCreatorInput[]
+  upsert?: Prisma.QuestionUpsertWithWhereUniqueWithoutCreatorInput | Prisma.QuestionUpsertWithWhereUniqueWithoutCreatorInput[]
+  createMany?: Prisma.QuestionCreateManyCreatorInputEnvelope
+  set?: Prisma.QuestionWhereUniqueInput | Prisma.QuestionWhereUniqueInput[]
+  disconnect?: Prisma.QuestionWhereUniqueInput | Prisma.QuestionWhereUniqueInput[]
+  delete?: Prisma.QuestionWhereUniqueInput | Prisma.QuestionWhereUniqueInput[]
+  connect?: Prisma.QuestionWhereUniqueInput | Prisma.QuestionWhereUniqueInput[]
+  update?: Prisma.QuestionUpdateWithWhereUniqueWithoutCreatorInput | Prisma.QuestionUpdateWithWhereUniqueWithoutCreatorInput[]
+  updateMany?: Prisma.QuestionUpdateManyWithWhereWithoutCreatorInput | Prisma.QuestionUpdateManyWithWhereWithoutCreatorInput[]
+  deleteMany?: Prisma.QuestionScalarWhereInput | Prisma.QuestionScalarWhereInput[]
+}
+
 export type QuestionCreateWithoutOptionsInput = {
   title: string
   type: $Enums.QuestionType
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedQuestionsInput
   singleChoice?: Prisma.SingleChoiceCreateNestedOneWithoutQuestionInput
   multipleChoice?: Prisma.MultipleChoiceCreateNestedOneWithoutQuestionInput
   judgment?: Prisma.JudgmentCreateNestedOneWithoutQuestionInput
@@ -648,7 +712,7 @@ export type QuestionUncheckedCreateWithoutOptionsInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
+  creatorId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   singleChoice?: Prisma.SingleChoiceUncheckedCreateNestedOneWithoutQuestionInput
@@ -681,9 +745,9 @@ export type QuestionUpdateWithoutOptionsInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  creator?: Prisma.UserUpdateOneWithoutCreatedQuestionsNestedInput
   singleChoice?: Prisma.SingleChoiceUpdateOneWithoutQuestionNestedInput
   multipleChoice?: Prisma.MultipleChoiceUpdateOneWithoutQuestionNestedInput
   judgment?: Prisma.JudgmentUpdateOneWithoutQuestionNestedInput
@@ -699,7 +763,7 @@ export type QuestionUncheckedUpdateWithoutOptionsInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creatorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   singleChoice?: Prisma.SingleChoiceUncheckedUpdateOneWithoutQuestionNestedInput
@@ -716,9 +780,9 @@ export type QuestionCreateWithoutSingleChoiceInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedQuestionsInput
   options?: Prisma.QuestionOptionCreateNestedManyWithoutQuestionInput
   multipleChoice?: Prisma.MultipleChoiceCreateNestedOneWithoutQuestionInput
   judgment?: Prisma.JudgmentCreateNestedOneWithoutQuestionInput
@@ -734,7 +798,7 @@ export type QuestionUncheckedCreateWithoutSingleChoiceInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
+  creatorId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   options?: Prisma.QuestionOptionUncheckedCreateNestedManyWithoutQuestionInput
@@ -767,9 +831,9 @@ export type QuestionUpdateWithoutSingleChoiceInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  creator?: Prisma.UserUpdateOneWithoutCreatedQuestionsNestedInput
   options?: Prisma.QuestionOptionUpdateManyWithoutQuestionNestedInput
   multipleChoice?: Prisma.MultipleChoiceUpdateOneWithoutQuestionNestedInput
   judgment?: Prisma.JudgmentUpdateOneWithoutQuestionNestedInput
@@ -785,7 +849,7 @@ export type QuestionUncheckedUpdateWithoutSingleChoiceInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creatorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   options?: Prisma.QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput
@@ -802,9 +866,9 @@ export type QuestionCreateWithoutMultipleChoiceInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedQuestionsInput
   options?: Prisma.QuestionOptionCreateNestedManyWithoutQuestionInput
   singleChoice?: Prisma.SingleChoiceCreateNestedOneWithoutQuestionInput
   judgment?: Prisma.JudgmentCreateNestedOneWithoutQuestionInput
@@ -820,7 +884,7 @@ export type QuestionUncheckedCreateWithoutMultipleChoiceInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
+  creatorId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   options?: Prisma.QuestionOptionUncheckedCreateNestedManyWithoutQuestionInput
@@ -853,9 +917,9 @@ export type QuestionUpdateWithoutMultipleChoiceInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  creator?: Prisma.UserUpdateOneWithoutCreatedQuestionsNestedInput
   options?: Prisma.QuestionOptionUpdateManyWithoutQuestionNestedInput
   singleChoice?: Prisma.SingleChoiceUpdateOneWithoutQuestionNestedInput
   judgment?: Prisma.JudgmentUpdateOneWithoutQuestionNestedInput
@@ -871,7 +935,7 @@ export type QuestionUncheckedUpdateWithoutMultipleChoiceInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creatorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   options?: Prisma.QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput
@@ -888,9 +952,9 @@ export type QuestionCreateWithoutJudgmentInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedQuestionsInput
   options?: Prisma.QuestionOptionCreateNestedManyWithoutQuestionInput
   singleChoice?: Prisma.SingleChoiceCreateNestedOneWithoutQuestionInput
   multipleChoice?: Prisma.MultipleChoiceCreateNestedOneWithoutQuestionInput
@@ -906,7 +970,7 @@ export type QuestionUncheckedCreateWithoutJudgmentInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
+  creatorId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   options?: Prisma.QuestionOptionUncheckedCreateNestedManyWithoutQuestionInput
@@ -939,9 +1003,9 @@ export type QuestionUpdateWithoutJudgmentInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  creator?: Prisma.UserUpdateOneWithoutCreatedQuestionsNestedInput
   options?: Prisma.QuestionOptionUpdateManyWithoutQuestionNestedInput
   singleChoice?: Prisma.SingleChoiceUpdateOneWithoutQuestionNestedInput
   multipleChoice?: Prisma.MultipleChoiceUpdateOneWithoutQuestionNestedInput
@@ -957,7 +1021,7 @@ export type QuestionUncheckedUpdateWithoutJudgmentInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creatorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   options?: Prisma.QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput
@@ -974,9 +1038,9 @@ export type QuestionCreateWithoutFillBlankInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedQuestionsInput
   options?: Prisma.QuestionOptionCreateNestedManyWithoutQuestionInput
   singleChoice?: Prisma.SingleChoiceCreateNestedOneWithoutQuestionInput
   multipleChoice?: Prisma.MultipleChoiceCreateNestedOneWithoutQuestionInput
@@ -992,7 +1056,7 @@ export type QuestionUncheckedCreateWithoutFillBlankInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
+  creatorId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   options?: Prisma.QuestionOptionUncheckedCreateNestedManyWithoutQuestionInput
@@ -1025,9 +1089,9 @@ export type QuestionUpdateWithoutFillBlankInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  creator?: Prisma.UserUpdateOneWithoutCreatedQuestionsNestedInput
   options?: Prisma.QuestionOptionUpdateManyWithoutQuestionNestedInput
   singleChoice?: Prisma.SingleChoiceUpdateOneWithoutQuestionNestedInput
   multipleChoice?: Prisma.MultipleChoiceUpdateOneWithoutQuestionNestedInput
@@ -1043,7 +1107,7 @@ export type QuestionUncheckedUpdateWithoutFillBlankInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creatorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   options?: Prisma.QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput
@@ -1060,9 +1124,9 @@ export type QuestionCreateWithoutCalculationInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedQuestionsInput
   options?: Prisma.QuestionOptionCreateNestedManyWithoutQuestionInput
   singleChoice?: Prisma.SingleChoiceCreateNestedOneWithoutQuestionInput
   multipleChoice?: Prisma.MultipleChoiceCreateNestedOneWithoutQuestionInput
@@ -1078,7 +1142,7 @@ export type QuestionUncheckedCreateWithoutCalculationInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
+  creatorId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   options?: Prisma.QuestionOptionUncheckedCreateNestedManyWithoutQuestionInput
@@ -1111,9 +1175,9 @@ export type QuestionUpdateWithoutCalculationInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  creator?: Prisma.UserUpdateOneWithoutCreatedQuestionsNestedInput
   options?: Prisma.QuestionOptionUpdateManyWithoutQuestionNestedInput
   singleChoice?: Prisma.SingleChoiceUpdateOneWithoutQuestionNestedInput
   multipleChoice?: Prisma.MultipleChoiceUpdateOneWithoutQuestionNestedInput
@@ -1129,7 +1193,7 @@ export type QuestionUncheckedUpdateWithoutCalculationInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creatorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   options?: Prisma.QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput
@@ -1146,9 +1210,9 @@ export type QuestionCreateWithoutShortAnswerInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  creator?: Prisma.UserCreateNestedOneWithoutCreatedQuestionsInput
   options?: Prisma.QuestionOptionCreateNestedManyWithoutQuestionInput
   singleChoice?: Prisma.SingleChoiceCreateNestedOneWithoutQuestionInput
   multipleChoice?: Prisma.MultipleChoiceCreateNestedOneWithoutQuestionInput
@@ -1164,7 +1228,7 @@ export type QuestionUncheckedCreateWithoutShortAnswerInput = {
   level: $Enums.QuestionLevel
   knowledgeUnit: $Enums.KnowledgeUnit
   score?: number
-  creator?: string | null
+  creatorId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   options?: Prisma.QuestionOptionUncheckedCreateNestedManyWithoutQuestionInput
@@ -1197,9 +1261,9 @@ export type QuestionUpdateWithoutShortAnswerInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  creator?: Prisma.UserUpdateOneWithoutCreatedQuestionsNestedInput
   options?: Prisma.QuestionOptionUpdateManyWithoutQuestionNestedInput
   singleChoice?: Prisma.SingleChoiceUpdateOneWithoutQuestionNestedInput
   multipleChoice?: Prisma.MultipleChoiceUpdateOneWithoutQuestionNestedInput
@@ -1215,7 +1279,7 @@ export type QuestionUncheckedUpdateWithoutShortAnswerInput = {
   level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
   knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  creator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creatorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   options?: Prisma.QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput
@@ -1224,6 +1288,138 @@ export type QuestionUncheckedUpdateWithoutShortAnswerInput = {
   judgment?: Prisma.JudgmentUncheckedUpdateOneWithoutQuestionNestedInput
   fillBlank?: Prisma.FillBlankUncheckedUpdateOneWithoutQuestionNestedInput
   calculation?: Prisma.CalculationUncheckedUpdateOneWithoutQuestionNestedInput
+}
+
+export type QuestionCreateWithoutCreatorInput = {
+  title: string
+  type: $Enums.QuestionType
+  level: $Enums.QuestionLevel
+  knowledgeUnit: $Enums.KnowledgeUnit
+  score?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  options?: Prisma.QuestionOptionCreateNestedManyWithoutQuestionInput
+  singleChoice?: Prisma.SingleChoiceCreateNestedOneWithoutQuestionInput
+  multipleChoice?: Prisma.MultipleChoiceCreateNestedOneWithoutQuestionInput
+  judgment?: Prisma.JudgmentCreateNestedOneWithoutQuestionInput
+  fillBlank?: Prisma.FillBlankCreateNestedOneWithoutQuestionInput
+  calculation?: Prisma.CalculationCreateNestedOneWithoutQuestionInput
+  shortAnswer?: Prisma.ShortAnswerCreateNestedOneWithoutQuestionInput
+}
+
+export type QuestionUncheckedCreateWithoutCreatorInput = {
+  id?: number
+  title: string
+  type: $Enums.QuestionType
+  level: $Enums.QuestionLevel
+  knowledgeUnit: $Enums.KnowledgeUnit
+  score?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  options?: Prisma.QuestionOptionUncheckedCreateNestedManyWithoutQuestionInput
+  singleChoice?: Prisma.SingleChoiceUncheckedCreateNestedOneWithoutQuestionInput
+  multipleChoice?: Prisma.MultipleChoiceUncheckedCreateNestedOneWithoutQuestionInput
+  judgment?: Prisma.JudgmentUncheckedCreateNestedOneWithoutQuestionInput
+  fillBlank?: Prisma.FillBlankUncheckedCreateNestedOneWithoutQuestionInput
+  calculation?: Prisma.CalculationUncheckedCreateNestedOneWithoutQuestionInput
+  shortAnswer?: Prisma.ShortAnswerUncheckedCreateNestedOneWithoutQuestionInput
+}
+
+export type QuestionCreateOrConnectWithoutCreatorInput = {
+  where: Prisma.QuestionWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuestionCreateWithoutCreatorInput, Prisma.QuestionUncheckedCreateWithoutCreatorInput>
+}
+
+export type QuestionCreateManyCreatorInputEnvelope = {
+  data: Prisma.QuestionCreateManyCreatorInput | Prisma.QuestionCreateManyCreatorInput[]
+}
+
+export type QuestionUpsertWithWhereUniqueWithoutCreatorInput = {
+  where: Prisma.QuestionWhereUniqueInput
+  update: Prisma.XOR<Prisma.QuestionUpdateWithoutCreatorInput, Prisma.QuestionUncheckedUpdateWithoutCreatorInput>
+  create: Prisma.XOR<Prisma.QuestionCreateWithoutCreatorInput, Prisma.QuestionUncheckedCreateWithoutCreatorInput>
+}
+
+export type QuestionUpdateWithWhereUniqueWithoutCreatorInput = {
+  where: Prisma.QuestionWhereUniqueInput
+  data: Prisma.XOR<Prisma.QuestionUpdateWithoutCreatorInput, Prisma.QuestionUncheckedUpdateWithoutCreatorInput>
+}
+
+export type QuestionUpdateManyWithWhereWithoutCreatorInput = {
+  where: Prisma.QuestionScalarWhereInput
+  data: Prisma.XOR<Prisma.QuestionUpdateManyMutationInput, Prisma.QuestionUncheckedUpdateManyWithoutCreatorInput>
+}
+
+export type QuestionScalarWhereInput = {
+  AND?: Prisma.QuestionScalarWhereInput | Prisma.QuestionScalarWhereInput[]
+  OR?: Prisma.QuestionScalarWhereInput[]
+  NOT?: Prisma.QuestionScalarWhereInput | Prisma.QuestionScalarWhereInput[]
+  id?: Prisma.IntFilter<"Question"> | number
+  title?: Prisma.StringFilter<"Question"> | string
+  type?: Prisma.EnumQuestionTypeFilter<"Question"> | $Enums.QuestionType
+  level?: Prisma.EnumQuestionLevelFilter<"Question"> | $Enums.QuestionLevel
+  knowledgeUnit?: Prisma.EnumKnowledgeUnitFilter<"Question"> | $Enums.KnowledgeUnit
+  score?: Prisma.IntFilter<"Question"> | number
+  creatorId?: Prisma.IntNullableFilter<"Question"> | number | null
+  createdAt?: Prisma.DateTimeFilter<"Question"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Question"> | Date | string
+}
+
+export type QuestionCreateManyCreatorInput = {
+  id?: number
+  title: string
+  type: $Enums.QuestionType
+  level: $Enums.QuestionLevel
+  knowledgeUnit: $Enums.KnowledgeUnit
+  score?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type QuestionUpdateWithoutCreatorInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
+  level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
+  knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  options?: Prisma.QuestionOptionUpdateManyWithoutQuestionNestedInput
+  singleChoice?: Prisma.SingleChoiceUpdateOneWithoutQuestionNestedInput
+  multipleChoice?: Prisma.MultipleChoiceUpdateOneWithoutQuestionNestedInput
+  judgment?: Prisma.JudgmentUpdateOneWithoutQuestionNestedInput
+  fillBlank?: Prisma.FillBlankUpdateOneWithoutQuestionNestedInput
+  calculation?: Prisma.CalculationUpdateOneWithoutQuestionNestedInput
+  shortAnswer?: Prisma.ShortAnswerUpdateOneWithoutQuestionNestedInput
+}
+
+export type QuestionUncheckedUpdateWithoutCreatorInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
+  level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
+  knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  options?: Prisma.QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput
+  singleChoice?: Prisma.SingleChoiceUncheckedUpdateOneWithoutQuestionNestedInput
+  multipleChoice?: Prisma.MultipleChoiceUncheckedUpdateOneWithoutQuestionNestedInput
+  judgment?: Prisma.JudgmentUncheckedUpdateOneWithoutQuestionNestedInput
+  fillBlank?: Prisma.FillBlankUncheckedUpdateOneWithoutQuestionNestedInput
+  calculation?: Prisma.CalculationUncheckedUpdateOneWithoutQuestionNestedInput
+  shortAnswer?: Prisma.ShortAnswerUncheckedUpdateOneWithoutQuestionNestedInput
+}
+
+export type QuestionUncheckedUpdateManyWithoutCreatorInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
+  level?: Prisma.EnumQuestionLevelFieldUpdateOperationsInput | $Enums.QuestionLevel
+  knowledgeUnit?: Prisma.EnumKnowledgeUnitFieldUpdateOperationsInput | $Enums.KnowledgeUnit
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -1264,9 +1460,10 @@ export type QuestionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   level?: boolean
   knowledgeUnit?: boolean
   score?: boolean
-  creator?: boolean
+  creatorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  creator?: boolean | Prisma.Question$creatorArgs<ExtArgs>
   options?: boolean | Prisma.Question$optionsArgs<ExtArgs>
   singleChoice?: boolean | Prisma.Question$singleChoiceArgs<ExtArgs>
   multipleChoice?: boolean | Prisma.Question$multipleChoiceArgs<ExtArgs>
@@ -1284,9 +1481,10 @@ export type QuestionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   level?: boolean
   knowledgeUnit?: boolean
   score?: boolean
-  creator?: boolean
+  creatorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  creator?: boolean | Prisma.Question$creatorArgs<ExtArgs>
 }, ExtArgs["result"]["question"]>
 
 export type QuestionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1296,9 +1494,10 @@ export type QuestionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   level?: boolean
   knowledgeUnit?: boolean
   score?: boolean
-  creator?: boolean
+  creatorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  creator?: boolean | Prisma.Question$creatorArgs<ExtArgs>
 }, ExtArgs["result"]["question"]>
 
 export type QuestionSelectScalar = {
@@ -1308,13 +1507,14 @@ export type QuestionSelectScalar = {
   level?: boolean
   knowledgeUnit?: boolean
   score?: boolean
-  creator?: boolean
+  creatorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type QuestionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "type" | "level" | "knowledgeUnit" | "score" | "creator" | "createdAt" | "updatedAt", ExtArgs["result"]["question"]>
+export type QuestionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "type" | "level" | "knowledgeUnit" | "score" | "creatorId" | "createdAt" | "updatedAt", ExtArgs["result"]["question"]>
 export type QuestionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  creator?: boolean | Prisma.Question$creatorArgs<ExtArgs>
   options?: boolean | Prisma.Question$optionsArgs<ExtArgs>
   singleChoice?: boolean | Prisma.Question$singleChoiceArgs<ExtArgs>
   multipleChoice?: boolean | Prisma.Question$multipleChoiceArgs<ExtArgs>
@@ -1324,12 +1524,17 @@ export type QuestionInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   shortAnswer?: boolean | Prisma.Question$shortAnswerArgs<ExtArgs>
   _count?: boolean | Prisma.QuestionCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type QuestionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type QuestionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type QuestionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  creator?: boolean | Prisma.Question$creatorArgs<ExtArgs>
+}
+export type QuestionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  creator?: boolean | Prisma.Question$creatorArgs<ExtArgs>
+}
 
 export type $QuestionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Question"
   objects: {
+    creator: Prisma.$UserPayload<ExtArgs> | null
     options: Prisma.$QuestionOptionPayload<ExtArgs>[]
     singleChoice: Prisma.$SingleChoicePayload<ExtArgs> | null
     multipleChoice: Prisma.$MultipleChoicePayload<ExtArgs> | null
@@ -1345,7 +1550,7 @@ export type $QuestionPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     level: $Enums.QuestionLevel
     knowledgeUnit: $Enums.KnowledgeUnit
     score: number
-    creator: string | null
+    creatorId: number | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["question"]>
@@ -1742,6 +1947,7 @@ readonly fields: QuestionFieldRefs;
  */
 export interface Prisma__QuestionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  creator<T extends Prisma.Question$creatorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Question$creatorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   options<T extends Prisma.Question$optionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Question$optionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuestionOptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   singleChoice<T extends Prisma.Question$singleChoiceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Question$singleChoiceArgs<ExtArgs>>): Prisma.Prisma__SingleChoiceClient<runtime.Types.Result.GetResult<Prisma.$SingleChoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   multipleChoice<T extends Prisma.Question$multipleChoiceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Question$multipleChoiceArgs<ExtArgs>>): Prisma.Prisma__MultipleChoiceClient<runtime.Types.Result.GetResult<Prisma.$MultipleChoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -1784,7 +1990,7 @@ export interface QuestionFieldRefs {
   readonly level: Prisma.FieldRef<"Question", 'QuestionLevel'>
   readonly knowledgeUnit: Prisma.FieldRef<"Question", 'KnowledgeUnit'>
   readonly score: Prisma.FieldRef<"Question", 'Int'>
-  readonly creator: Prisma.FieldRef<"Question", 'String'>
+  readonly creatorId: Prisma.FieldRef<"Question", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Question", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Question", 'DateTime'>
 }
@@ -2039,6 +2245,10 @@ export type QuestionCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    * The data used to create many Questions.
    */
   data: Prisma.QuestionCreateManyInput | Prisma.QuestionCreateManyInput[]
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuestionIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2109,6 +2319,10 @@ export type QuestionUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many Questions to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuestionIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2175,6 +2389,25 @@ export type QuestionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many Questions to delete.
    */
   limit?: number
+}
+
+/**
+ * Question.creator
+ */
+export type Question$creatorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

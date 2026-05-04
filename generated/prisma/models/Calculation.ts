@@ -369,6 +369,10 @@ export type CalculationUncheckedUpdateOneWithoutQuestionNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CalculationUpdateToOneWithWhereWithoutQuestionInput, Prisma.CalculationUpdateWithoutQuestionInput>, Prisma.CalculationUncheckedUpdateWithoutQuestionInput>
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type CalculationCreateWithoutQuestionInput = {
   standardProcess?: string | null
   standardAnswer: string

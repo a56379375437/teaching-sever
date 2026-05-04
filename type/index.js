@@ -28,6 +28,7 @@ export const KnowledgeUnit = {
 // 提取公共的 include 配置，减少冗余(主要用于获取题目列表时)
 export const QUESTION_INCLUDE = {
   options: true,
+  creator: true,
   singleChoice: true,
   multipleChoice: true,
   judgment: true,

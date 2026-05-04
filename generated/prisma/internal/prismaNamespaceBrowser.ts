@@ -58,7 +58,9 @@ export const ModelName = {
   Judgment: 'Judgment',
   FillBlank: 'FillBlank',
   Calculation: 'Calculation',
-  ShortAnswer: 'ShortAnswer'
+  ShortAnswer: 'ShortAnswer',
+  User: 'User',
+  QuizRecord: 'QuizRecord'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -81,7 +83,7 @@ export const QuestionScalarFieldEnum = {
   level: 'level',
   knowledgeUnit: 'knowledgeUnit',
   score: 'score',
-  creator: 'creator',
+  creatorId: 'creatorId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -151,6 +153,31 @@ export const ShortAnswerScalarFieldEnum = {
 } as const
 
 export type ShortAnswerScalarFieldEnum = (typeof ShortAnswerScalarFieldEnum)[keyof typeof ShortAnswerScalarFieldEnum]
+
+
+export const UserScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  password: 'password',
+  name: 'name',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const QuizRecordScalarFieldEnum = {
+  id: 'id',
+  score: 'score',
+  totalScore: 'totalScore',
+  knowledgeUnit: 'knowledgeUnit',
+  completedAt: 'completedAt',
+  studentId: 'studentId'
+} as const
+
+export type QuizRecordScalarFieldEnum = (typeof QuizRecordScalarFieldEnum)[keyof typeof QuizRecordScalarFieldEnum]
 
 
 export const SortOrder = {
