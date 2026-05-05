@@ -161,6 +161,7 @@ export const UserScalarFieldEnum = {
   password: 'password',
   name: 'name',
   role: 'role',
+  score: 'score',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
