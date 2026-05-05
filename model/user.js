@@ -21,6 +21,7 @@ export const UserService = {
           username: true,
           name: true,
           role: true,
+          score: true,
           createdAt: true
         }
       }),
@@ -53,13 +54,18 @@ export const UserService = {
 
   // 更新用户
   async updateUser(id, data) {
+    const updateData = {
+      name: data.name,
+      role: data.role,
+      score: data.score || undefined ? Number(data.score) : undefined // 不传默认为undefined，表示不更新
+    };
+
+    if(data.password && data.password.trim() !== '') {
+      updateData.password = data.password;
+    }
     return await prisma.user.update({
-      where: { id },
-      data: {
-        password: data.password,
-        name: data.name,
-        role: data.role
-      }
+      where: { id: Number(id) },
+      data: updateData
     });
   },
 
