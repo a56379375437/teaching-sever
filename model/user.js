@@ -1,4 +1,7 @@
 import prisma from '../prisma/index.js'
+import bcrypt from 'bcrypt'
+
+const SALT_ROUNDS = 10;//加密次数
 
 export const UserService = {
   // 根据用户名查找（登录用）
@@ -42,10 +45,11 @@ export const UserService = {
 
   // 创建用户
   async createUser(data) {
+    const hashedPassword = await bcrypt.hash(data.password, SALT_ROUNDS);//加密
     return await prisma.user.create({
       data: {
         username: data.username,
-        password: data.password,
+        password: hashedPassword,
         name: data.name,
         role: data.role || 'STUDENT'
       }
@@ -61,7 +65,7 @@ export const UserService = {
     };
 
     if(data.password && data.password.trim() !== '') {
-      updateData.password = data.password;
+      updateData.password = await bcrypt.hash(data.password, SALT_ROUNDS);
     }
     return await prisma.user.update({
       where: { id: Number(id) },

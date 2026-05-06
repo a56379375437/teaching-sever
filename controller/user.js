@@ -1,9 +1,11 @@
 import { UserService } from "../model/index.js";
 import Router from '@koa/router'
 import { sendSuccess, sendError } from '../type/index.js';
+import bcrypt from 'bcrypt'
 
 // 子路由：/api/user
 const userRouter = new Router({ prefix: '/users' })
+
 
 // 用户登录
 userRouter.post('/login', async (ctx) => {
@@ -20,8 +22,9 @@ userRouter.post('/login', async (ctx) => {
       return sendError(ctx, '用户不存在', 404);
     }
 
-    // 密码校验(可以使用bcrypt进行加密)
-    if (user.password !== password) {
+    // 密码校验(使用bcrypt进行加密)
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
       return sendError(ctx, '密码错误', 401);
     }
 
