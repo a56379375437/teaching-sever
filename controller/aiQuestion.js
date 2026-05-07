@@ -6,7 +6,7 @@ const aiQuestionRouter = new Router({ prefix: '/aiquestion' })
 
 export const getaiQuestion = async ctx => {
   try {
-    // 1. 接收上下文参数
+    // 接收上下文参数
     const { prompt, type, knowledgeUnit } = ctx.request.body
 
     if (!prompt || prompt.length < 5) {
@@ -20,7 +20,7 @@ export const getaiQuestion = async ctx => {
       baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
     })
 
-    // 2. 增强 System Prompt，要求 AI 进行标题润色和逻辑对齐
+    // 增强 System Prompt，要求 AI 进行标题润色和逻辑对齐
     const systemPrompt = `
       你是一个资深的教育专家和出题助手。请根据用户提供的【原始描述】、候选【题目类型】和【知识单元】，生成一道与概率论与数理统计知识相关的高质量的题目。
 
@@ -49,7 +49,7 @@ export const getaiQuestion = async ctx => {
       }
     `
 
-    // 3. 构建用户 Prompt
+    //构建用户 Prompt
     const userPrompt = `
       请根据以下信息生成题目：
       - 原始描述/要求：${prompt}

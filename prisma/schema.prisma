@@ -26,13 +26,8 @@ enum QuestionLevel {
 
 // 知识点分类
 enum KnowledgeUnit {
-  PROBABILITY_BASE      // 概率论基础
-  RANDOM_VARIABLE       // 随机变量
-  DIGITAL_CHARACTER     // 数字特征
   LARGE_NUMBER_LAW      // 大数定律
-  MATHEMATICAL_STAT     // 数理统计
-  POINT_ESTIMATION      // 点估计
-  HYPOTHESIS_TEST       // 假设检验
+  CENTRAL_LIMIT_THEOREM // 中心极限定理
 }
 
 // 主题目表（核心）

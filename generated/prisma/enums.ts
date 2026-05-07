@@ -31,13 +31,8 @@ export type QuestionLevel = (typeof QuestionLevel)[keyof typeof QuestionLevel]
 
 
 export const KnowledgeUnit = {
-  PROBABILITY_BASE: 'PROBABILITY_BASE',
-  RANDOM_VARIABLE: 'RANDOM_VARIABLE',
-  DIGITAL_CHARACTER: 'DIGITAL_CHARACTER',
   LARGE_NUMBER_LAW: 'LARGE_NUMBER_LAW',
-  MATHEMATICAL_STAT: 'MATHEMATICAL_STAT',
-  POINT_ESTIMATION: 'POINT_ESTIMATION',
-  HYPOTHESIS_TEST: 'HYPOTHESIS_TEST'
+  CENTRAL_LIMIT_THEOREM: 'CENTRAL_LIMIT_THEOREM'
 } as const
 
 export type KnowledgeUnit = (typeof KnowledgeUnit)[keyof typeof KnowledgeUnit]
