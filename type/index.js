@@ -18,6 +18,7 @@ export const QuestionLevel = {
 export const KnowledgeUnit = {
   LARGE_NUMBER_LAW: 'LARGE_NUMBER_LAW',
   CENTRAL_LIMIT_THEOREM: 'CENTRAL_LIMIT_THEOREM',
+  CONFIDENCE_INTERVAL: 'CONFIDENCE_INTERVAL',
 }
 
 // 提取公共的 include 配置，减少冗余(主要用于获取题目列表时)

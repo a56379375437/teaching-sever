@@ -28,6 +28,7 @@ enum QuestionLevel {
 enum KnowledgeUnit {
   LARGE_NUMBER_LAW      // 大数定律
   CENTRAL_LIMIT_THEOREM // 中心极限定理
+  CONFIDENCE_INTERVAL   // 置信区间
 }
 
 // 主题目表（核心）

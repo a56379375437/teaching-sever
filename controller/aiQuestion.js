@@ -16,7 +16,7 @@ export const getaiQuestion = async ctx => {
     }
 
     const openai = new OpenAI({
-      apiKey: process.env.ALI_API_KEY || 'sk-xxxx',
+      apiKey: process.env.ALI_API_KEY,
       baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
     })
 
@@ -33,7 +33,7 @@ export const getaiQuestion = async ctx => {
       【可选枚举值定义】：
       - 题目类型(type): ["SINGLE_CHOICE", "MULTIPLE_CHOICE", "JUDGMENT", "FILL_BLANK", "CALCULATION", "SHORT_ANSWER"]
       - 难度(level): ["EASY", "MEDIUM", "HARD"]
-      - 知识单元(knowledgeUnit): ["PROBABILITY_BASE", "RANDOM_VARIABLE", "DIGITAL_CHARACTER", "LARGE_NUMBER_LAW", "MATHEMATICAL_STAT", "POINT_ESTIMATION", "HYPOTHESIS_TEST"]
+      - 知识单元(knowledgeUnit): ["LARGE_NUMBER_LAW", "CENTRAL_LIMIT_THEOREM", "CONFIDENCE_INTERVAL"]
 
       【返回 JSON 结构】：
       {
@@ -41,7 +41,7 @@ export const getaiQuestion = async ctx => {
         "type": "类型枚举值",
         "level": "匹配的难度",
         "knowledgeUnit": "匹配的知识点枚举",
-        "score": 5,
+        "score": 分数在数字3到7之间，根据难度变动,
         "answer": "标准答案文本",
         "options": [
           {"content": "选项内容", "isCorrect": true}
@@ -59,12 +59,13 @@ export const getaiQuestion = async ctx => {
     `
 
     const completion = await openai.chat.completions.create({
-      model: 'qwen-plus',
+      model: 'deepseek-v4-pro',
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },
       ],
       response_format: { type: 'json_object' },
+      enable_thinking: false,
     })
 
     const rawContent = completion.choices[0].message.content

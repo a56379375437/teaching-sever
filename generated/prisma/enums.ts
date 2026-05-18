@@ -32,7 +32,8 @@ export type QuestionLevel = (typeof QuestionLevel)[keyof typeof QuestionLevel]
 
 export const KnowledgeUnit = {
   LARGE_NUMBER_LAW: 'LARGE_NUMBER_LAW',
-  CENTRAL_LIMIT_THEOREM: 'CENTRAL_LIMIT_THEOREM'
+  CENTRAL_LIMIT_THEOREM: 'CENTRAL_LIMIT_THEOREM',
+  CONFIDENCE_INTERVAL: 'CONFIDENCE_INTERVAL'
 } as const
 
 export type KnowledgeUnit = (typeof KnowledgeUnit)[keyof typeof KnowledgeUnit]
